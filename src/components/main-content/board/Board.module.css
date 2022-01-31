@@ -1,0 +1,30 @@
+.board {
+    width: 850px;
+    background: #FFFFFF;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 40px;
+}
+.board_line {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 18px 18px;
+}
+.board_line:first-child {
+    padding-bottom: 9px;
+}
+.board_line:last-child {
+    padding-top: 9px;
+}
+.board_word {
+    font-size: 30px;
+    padding: 0 7px;
+    border-radius: 10px;
+}
+.board_word__active {
+    background-color: #DDDDDD;
+}
+@media (max-width: 850px) {
+    .board {
+        width: 100%;
+    }
+}
