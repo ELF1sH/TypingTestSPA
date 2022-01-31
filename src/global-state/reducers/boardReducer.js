@@ -7,6 +7,7 @@ Array.prototype.getRandElem = function() {
 const ADD_ELEMENT = 'ADD_ELEMENT'
 const REMOVE_LAST_ELEMENT = 'REMOVE_LAST_ELEMENT'
 const TURN_NEXT_WORD = 'TURN_NEXT_WORD'
+const RESET = 'RESET'
 
 const initialState = {
     firstLine: [],
@@ -41,6 +42,9 @@ const reducer = (state = initialState, action) => {
             }
             return newState
 
+        case RESET:
+            return initialState
+
         default:
             return newState
     }
@@ -71,6 +75,14 @@ export const turnNextWord = () => {
     return dispatch => {
         dispatch({
             type: TURN_NEXT_WORD
+        })
+    }
+}
+
+export const resetBoard = () => {
+    return dispatch => {
+        dispatch({
+            type: RESET
         })
     }
 }

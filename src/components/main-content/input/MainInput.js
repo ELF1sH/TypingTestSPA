@@ -16,6 +16,7 @@ function MainInput() {
 
     const handleChange = (event) => {
         if (!timerState.isActive) {
+            console.log("toggle")
             dispatch(toggleTimer())
         }
 

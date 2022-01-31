@@ -1,9 +1,13 @@
 const COUNT_DOWN = "COUNT_DOWN"
 const TOGGLE_TIMER = "TOGGLE_TIMER"
+const RESET_TIMER = "RESET_TIMER"
+
+const TIME = 10
 
 const initialState = {
-    time: 60,
-    isActive: false
+    time: TIME,
+    isActive: false,
+    isTimeOut: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -15,14 +19,19 @@ const reducer = (state = initialState, action) => {
                 newState.time = newState.time - 1
             }
             else if (newState.isActive && newState.time === 0) {
-                newState.time = 60
                 newState.isActive = false
+                newState.isTimeOut = true
             }
             return newState
 
         case TOGGLE_TIMER:
             newState.isActive ? newState.isActive = false : newState.isActive = true
-            if (!newState.isActive) newState.time = 60
+            return newState
+
+        case RESET_TIMER:
+            newState.time = TIME
+            newState.isTimeOut = false
+            newState.isActive = false
             return newState
 
         default: 
@@ -46,6 +55,14 @@ export const toggleTimer = () => {
     return dispatch => {
         dispatch({
             type: TOGGLE_TIMER
+        })
+    }
+}
+
+export const resetTimer = () => {
+    return dispatch => {
+        dispatch({
+            type: RESET_TIMER
         })
     }
 }
