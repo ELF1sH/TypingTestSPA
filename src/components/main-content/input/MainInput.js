@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Timer from '../timer/Timer';
 import { toggleTimer } from '../../../global-state/reducers/timerReducer';
 import { addToResult } from '../../../global-state/reducers/resultReducer';
+import { updateState } from '../../../global-state/reducers/resultReducer';
+import { resetState } from '../../../global-state/reducers/resultReducer';
+import { resetListOfCorrectWords } from '../../../global-state/reducers/resultReducer';
 
 function MainInput() {
 
@@ -22,14 +25,19 @@ function MainInput() {
         }
 
         setCurValue(event.target.value)
+
+        dispatch(updateState(event.target.value, boardState.firstLine[boardState.currentWord])) 
+
         if (event.target.value.length > 0 && event.target.value.slice(-1) === " ") {
             setCurValue("")
             dispatch(turnNextWord())
+            dispatch(resetState())
             if (event.target.value.slice(0, -1) === boardState.firstLine[boardState.currentWord]) {
-                dispatch(addToResult())
+                dispatch(addToResult(boardState.currentWord))
             }
-            console.log(event.target.value.slice(0, -1))
-            console.log(boardState.firstLine[boardState.currentWord])
+            if (boardState.firstLine.length === boardState.currentWord + 1) {
+                dispatch(resetListOfCorrectWords())
+            }
         }
     }
 

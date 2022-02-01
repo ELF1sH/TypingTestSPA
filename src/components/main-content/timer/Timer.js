@@ -5,6 +5,7 @@ import { countDownTimer } from '../../../global-state/reducers/timerReducer';
 import { toggleTimer } from '../../../global-state/reducers/timerReducer';
 import { resetBoard } from '../../../global-state/reducers/boardReducer';
 import { resetTimer } from '../../../global-state/reducers/timerReducer';
+import { resetState } from '../../../global-state/reducers/resultReducer';
 
 function Timer() {
 
@@ -24,6 +25,7 @@ function Timer() {
             dispatch(toggleTimer())
             dispatch(resetTimer())
             dispatch(resetBoard())
+            dispatch(resetState())
             clearInterval(window.interval)
             navigate("/result")
         }

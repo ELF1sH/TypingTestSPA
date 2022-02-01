@@ -10,6 +10,7 @@ function Board() {
     const secondLine = useRef(null)
 
     const boardStore = useSelector(state => state.board)
+    const resultStore = useSelector(state => state.result)
     
     const dispatch = useDispatch()
 
@@ -20,7 +21,7 @@ function Board() {
 
     const fillLine = (lineNumber) => {
         const line = lineNumber === 0 ? firstLine : secondLine
-        const width = line.current.clientWidth - 18 * 2
+        const width = line.current.clientWidth - 18 * 2    // substract left and right paddings
         let widthOfSpans = 0
         for (let i = 0; i < line.current.children.length; i++) {
             widthOfSpans += line.current.children[i].clientWidth
@@ -34,7 +35,30 @@ function Board() {
             <div className={styles.board_line} ref={firstLine}>
             {
                 boardStore.firstLine.map((word, index) => {
-                    return <span className={`${styles.board_word} ${index === boardStore.currentWord ? styles.board_word__active : ""}`} key={index}>{word}</span>
+                    return (
+                        <span 
+                            className={
+                                `${styles.board_word} ${index === boardStore.currentWord ? styles.board_word__active : ""} 
+                                ${resultStore.correctWords.includes(index) ? styles.letter__success : index < boardStore.currentWord ? styles.letter__danger : ""}`
+                            } 
+                            key={index}
+                        >
+                            {[...word].map((letter, indexLetter) => {
+                                return (
+                                    <span 
+                                        key={indexLetter}
+                                        className={
+                                            !resultStore.isTypingRight && index === boardStore.currentWord && resultStore.lettersTyped ? 
+                                            styles.letter__danger : resultStore.lettersTyped > indexLetter && index === boardStore.currentWord && resultStore.lettersTyped ? 
+                                            styles.letter__success : ""
+                                        }
+                                    >
+                                        {letter}
+                                    </span>
+                                )
+                            })}
+                        </span>
+                    )
                 })
             }
             </div>

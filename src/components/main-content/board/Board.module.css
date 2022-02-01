@@ -7,7 +7,7 @@
 .board_line {
     display: flex;
     flex-wrap: wrap;
-    padding: 18px 18px;
+    padding: 18px;
 }
 .board_line:first-child {
     padding-bottom: 9px;
@@ -22,6 +22,12 @@
 }
 .board_word__active {
     background-color: #DDDDDD;
+}
+.letter__success {
+    color: #4BB543;
+}
+.letter__danger {
+    color: #F32013;
 }
 @media (max-width: 850px) {
     .board {
