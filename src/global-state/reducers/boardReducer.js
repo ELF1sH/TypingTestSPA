@@ -43,7 +43,11 @@ const reducer = (state = initialState, action) => {
             return newState
 
         case RESET:
-            return initialState
+            newState.firstLine = []
+            newState.secondLine = []
+            newState.isComplete = [false, false]
+            newState.currentWord = 0
+            return newState
 
         default:
             return newState

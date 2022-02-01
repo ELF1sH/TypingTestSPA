@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Timer from '../timer/Timer';
 import { toggleTimer } from '../../../global-state/reducers/timerReducer';
+import { addToResult } from '../../../global-state/reducers/resultReducer';
 
 function MainInput() {
 
@@ -13,17 +14,22 @@ function MainInput() {
 
     const dispatch = useDispatch()
     const timerState = useSelector(state => state.timer)
+    const boardState = useSelector(state => state.board)
 
     const handleChange = (event) => {
         if (!timerState.isActive) {
-            console.log("toggle")
             dispatch(toggleTimer())
         }
 
         setCurValue(event.target.value)
-        if (event.target.value.length > 0 && event.target.value[event.target.value.length - 1] === " ") {
+        if (event.target.value.length > 0 && event.target.value.slice(-1) === " ") {
             setCurValue("")
             dispatch(turnNextWord())
+            if (event.target.value.slice(0, -1) === boardState.firstLine[boardState.currentWord]) {
+                dispatch(addToResult())
+            }
+            console.log(event.target.value.slice(0, -1))
+            console.log(boardState.firstLine[boardState.currentWord])
         }
     }
 
