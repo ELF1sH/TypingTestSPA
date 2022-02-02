@@ -1,4 +1,5 @@
 import { eng } from "../../distionary/eng"
+import { ru } from '../../distionary/ru'
 
 Array.prototype.getRandElem = function() {
     return this[Math.floor(Math.random() * this.length)]
@@ -8,8 +9,10 @@ const ADD_ELEMENT = 'ADD_ELEMENT'
 const REMOVE_LAST_ELEMENT = 'REMOVE_LAST_ELEMENT'
 const TURN_NEXT_WORD = 'TURN_NEXT_WORD'
 const RESET = 'RESET'
+const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE'
 
 const initialState = {
+    currentLang: "eng",
     firstLine: [],
     isComplete: [false, false],   // is particular line has enough words inside
     secondLine: [], 
@@ -21,7 +24,7 @@ const reducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_ELEMENT:
-            const newWord = eng.getRandElem()
+            const newWord  = newState.currentLang === 'eng' ? eng.getRandElem() : ru.getRandElem()[0]
             action.lineNumber ===  0 ? newState.firstLine.push(newWord) : newState.secondLine.push(newWord)
             return newState
 
@@ -47,6 +50,10 @@ const reducer = (state = initialState, action) => {
             newState.secondLine = []
             newState.isComplete = [false, false]
             newState.currentWord = 0
+            return newState
+
+        case CHANGE_LANGUAGE:
+            newState.currentLang = action.currentLang
             return newState
 
         default:
@@ -90,3 +97,12 @@ export const resetBoard = () => {
         })
     }
 }
+
+export const changeLanguage = (lang) => {
+    return dispatch => {
+        dispatch({
+            type: CHANGE_LANGUAGE,
+            currentLang: lang
+        })
+    }
+} 
