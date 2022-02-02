@@ -8,8 +8,8 @@
     border: none;
     width: 100%;
     border-radius: 40px 0 0 40px;
-    font-size: 22px;
-    padding: 5px 25px; 
+    font-size: 28px;
+    padding: 7px 25px; 
 }
 .main_input:focus {
     outline: none;

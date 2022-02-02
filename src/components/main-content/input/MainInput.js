@@ -5,11 +5,9 @@ import { turnNextWord } from '../../../global-state/reducers/boardReducer';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Timer from '../timer/Timer';
-import { toggleTimer } from '../../../global-state/reducers/timerReducer';
-import { addToResult } from '../../../global-state/reducers/resultReducer';
-import { updateState } from '../../../global-state/reducers/resultReducer';
-import { resetState } from '../../../global-state/reducers/resultReducer';
-import { resetListOfCorrectWords } from '../../../global-state/reducers/resultReducer';
+import { toggleTimer, resetTimer } from '../../../global-state/reducers/timerReducer';
+import { resetBoard } from '../../../global-state/reducers/boardReducer';
+import { resetResult, resetListOfCorrectWords, addToResult, updateState, resetState } from '../../../global-state/reducers/resultReducer';
 
 function MainInput() {
 
@@ -41,11 +39,21 @@ function MainInput() {
         }
     }
 
+    const onClickRestart = () => {
+        dispatch(toggleTimer())
+        dispatch(resetTimer())
+        dispatch(resetBoard())
+        dispatch(resetState())
+        dispatch(resetResult())
+        dispatch(resetListOfCorrectWords())
+        setCurValue("")
+    }
+
     return (
         <div className={`d-flex ${styles.main_input_wrapper}`}>
             <input type={"text"} className={styles.main_input} value={curValue} onChange={handleChange} />
             <span className={styles.time_span}><Timer /></span>
-            <button className={styles.btn_redo}><i className="fas fa-redo fa-1x"></i></button>
+            <button className={styles.btn_redo} onClick={onClickRestart}><i className="fas fa-redo fa-1x"></i></button>
         </div>
     )
 }
