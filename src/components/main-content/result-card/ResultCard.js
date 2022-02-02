@@ -20,9 +20,11 @@ function ResultCard() {
                 <span className={styles.result_digit}>{resultStore.currentResult}</span> words
             </span>
             <span className={styles.message}>not bad, but could be better🐢</span>
-            <button className={styles.btn_restart}>
-                <NavLink to="/" onClick={handleClick} className={styles.link_restart}>ok, try again</NavLink>
-            </button>
+            
+            <NavLink to="/" onClick={handleClick} className={styles.link_restart}>
+                <button className={styles.btn_restart}>ok, try again</button>
+            </NavLink>
+            
         </div>
     )
 }
