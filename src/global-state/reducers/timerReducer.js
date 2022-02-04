@@ -2,7 +2,7 @@ const COUNT_DOWN = "COUNT_DOWN"
 const TOGGLE_TIMER = "TOGGLE_TIMER"
 const RESET_TIMER = "RESET_TIMER"
 
-const TIME = 60
+const TIME = 10
 
 const initialState = {
     time: TIME,

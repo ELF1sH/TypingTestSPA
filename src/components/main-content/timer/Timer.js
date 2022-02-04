@@ -6,10 +6,13 @@ import { toggleTimer } from '../../../global-state/reducers/timerReducer';
 import { resetBoard } from '../../../global-state/reducers/boardReducer';
 import { resetTimer } from '../../../global-state/reducers/timerReducer';
 import { resetState } from '../../../global-state/reducers/resultReducer';
+import { addNewResult } from '../../../global-state/reducers/resultReducer';
 
 function Timer() {
 
     const timerState = useSelector(state => state.timer)
+    const resultState = useSelector(state => state.result)
+    const boardState = useSelector(state => state.board)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -26,6 +29,7 @@ function Timer() {
             dispatch(resetTimer())
             dispatch(resetBoard())
             dispatch(resetState())
+            dispatch(addNewResult(boardState.currentLang, resultState.currentResult))
             clearInterval(window.interval)
             navigate("/result")
         }

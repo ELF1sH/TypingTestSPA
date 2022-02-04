@@ -3,6 +3,7 @@ const RESET_RESULT = 'RESET_RESULT'
 const UPDATE_STATE = 'UPDATE_STATE'
 const RESET_STATE = 'RESET_STATE'
 const RESET_CORRECT_WORDS = 'RESET_CORRECT_WORDS'
+const ADD_NEW_RESULT  = 'ADD_NEW_RESULT'
 
 const initialState = {
     // result:
@@ -10,7 +11,9 @@ const initialState = {
     correctWords: [],
     // state:
     lettersTyped: 0, 
-    isTypingRight: true
+    isTypingRight: true,
+
+    resultsStorage: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -45,6 +48,10 @@ const reducer = (state = initialState, action) => {
         case RESET_STATE:
             newState.lettersTyped = 0
             newState.isTypingRight = true
+            return newState
+
+        case ADD_NEW_RESULT:
+            newState.resultsStorage = [...newState.resultsStorage, {lang: action.lang === "eng" ? "english" : "russian", wpm: action.wpm}]
             return newState
 
         default:
@@ -95,6 +102,16 @@ export const resetListOfCorrectWords = () => {
     return dispatch => {
         dispatch({
             type: RESET_CORRECT_WORDS
+        })
+    }
+}
+
+export const addNewResult = (lang, wpm) => {
+    return dispatch => {
+        dispatch({
+            type: ADD_NEW_RESULT,
+            lang: lang, 
+            wpm: wpm
         })
     }
 }
