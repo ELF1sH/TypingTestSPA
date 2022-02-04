@@ -15,8 +15,6 @@ function Scoreboard() {
         setFilter(event.target.value)
     }
 
-    console.log(resultsStorage);
-
     return (
         <div className={styles.scoreboard}>
             <div>

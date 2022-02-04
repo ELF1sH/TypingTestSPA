@@ -15,7 +15,7 @@ function TestWrapper() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<div className={styles.test_wrapper}><Board /><MainInput /></div>} />
+                <Route path="*" element={<div className={styles.test_wrapper}><Board /><MainInput /></div>} />
                 <Route path="/result" element={<div className={styles.test_wrapper}><ResultCard /></div>} />
             </Routes>
         </BrowserRouter>
