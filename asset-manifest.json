@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/TypingTestSPA/static/css/main.f91cfcaa.css",
+    "main.js": "/TypingTestSPA/static/js/main.5673a5e5.js",
+    "index.html": "/TypingTestSPA/index.html",
+    "main.f91cfcaa.css.map": "/TypingTestSPA/static/css/main.f91cfcaa.css.map",
+    "main.5673a5e5.js.map": "/TypingTestSPA/static/js/main.5673a5e5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f91cfcaa.css",
+    "static/js/main.5673a5e5.js"
+  ]
+}
